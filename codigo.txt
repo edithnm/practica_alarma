@@ -1,0 +1,32 @@
+/* Materia: Sistemas Programables
+ * Nombre Practica: Simulacion de alarma para puerta con reed switch
+ * Descripcion de la practica: Desarrollar una alarma con arduino para el 
+ * acceso en una puerta.
+ * Alumna: Blanca Edith Noriega Mireles
+ */
+
+int led = 13;  
+int reedswitch = 5;  
+int buzzer = 8;  
+int val = 0;  //variable para leer el estado del led
+
+void setup() {
+  pinMode(led, OUTPUT);   //declaro el led como salida
+  pinMode(reedswitch, INPUT);  //declaro la reed switch como el sensor de entrada
+  pinMode(buzzer, OUTPUT);   //declaro el buzzer como salida
+}
+void loop() {
+  val = digitalRead(reedswitch); //lee el valor de entrada (reed switch)
+  if(val == LOW){   //verifica si la entrada es baja
+    digitalWrite(led, HIGH);  //enciende el led
+    digitalWrite(buzzer, HIGH);  //activa el buzzer
+    delay(2000);
+    digitalWrite(led, LOW);   
+    digitalWrite(buzzer, LOW);
+    delay(2000);
+  }
+else{                     //y si no apaga el led y el buzzer
+  digitalWrite(led, LOW);    
+  digitalWrite(buzzer, LOW);
+}
+}
